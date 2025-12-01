@@ -45,5 +45,18 @@ public class LruTest {
         assertThrows(NoSuchElementException.class, () -> cache.get(99));
     }
 
+    @Test
+    void getUpdatesRecentness() {
+        LRU cache = new LRU(2);
+
+        int makeHeadA = cache.put("A");
+        int makeHeadB = cache.put("B");
+
+        cache.get(makeHeadA);
+
+        cache.put("C");
+
+        assertThrows(NoSuchElementException.class, () -> cache.get(makeHeadB));
+    }
 
 }
