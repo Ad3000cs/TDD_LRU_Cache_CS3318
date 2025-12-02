@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Unit tests for the {@link LRU} class.
+ * Unit tests for the {@link LRUCache} class.
  *
  * <p>
  *     These tests follow a Test Driven Development (TDD) approach.
@@ -24,7 +24,7 @@ public class LruTest {
 
     @Test
     void cannotCreateCacheInInvalidSize(){
-        assertThrows(IllegalArgumentException.class, () -> new LRU(0));
+        assertThrows(IllegalArgumentException.class, () -> new LRUCache(0));
     }
 
     /**
@@ -33,7 +33,7 @@ public class LruTest {
      */
     @Test
     void putInsertsNewValue() {
-        LRU cache = new LRU(2);
+        LRUCache cache = new LRUCache(2);
         int hash = cache.put("A");
 
         assertEquals("A", cache.get(hash));
@@ -46,7 +46,7 @@ public class LruTest {
 
     @Test
     void putReturnsHashCode(){
-        LRU cache = new LRU(2);
+        LRUCache cache = new LRUCache(2);
         Object value = "Hello";
         assertEquals(value.hashCode(), cache.put(value));
     }
@@ -59,7 +59,7 @@ public class LruTest {
 
     @Test
     void putUpdateRecentness() {
-        LRU cache = new LRU(2);
+        LRUCache cache = new LRUCache(2);
 
         cache.put("A");
         cache.put("B");
@@ -76,7 +76,7 @@ public class LruTest {
 
     @Test
     void getThrowsIfNotFound(){
-        LRU cache = new LRU(2);
+        LRUCache cache = new LRUCache(2);
         assertThrows(NoSuchElementException.class, () -> cache.get(99));
     }
 
@@ -88,7 +88,7 @@ public class LruTest {
 
     @Test
     void getUpdatesRecentness() {
-        LRU cache = new LRU(2);
+        LRUCache cache = new LRUCache(2);
 
         int makeHeadA = cache.put("A");
         int makeHeadB = cache.put("B");

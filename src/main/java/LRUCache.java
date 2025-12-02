@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
  */
 
 
-public class LRU {
+public class LRUCache {
 
     /**
      * A node in the doubly-linked list representing a cached value.
@@ -50,7 +50,7 @@ public class LRU {
      * @throws IllegalArgumentException if {@code capacity <= 0}
      */
 
-    public LRU(int capacity) {
+    public LRUCache(int capacity) {
         if (capacity <= 0){
             throw new IllegalArgumentException();
         }
